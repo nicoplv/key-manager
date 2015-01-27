@@ -25,7 +25,7 @@ app.param('datafile', function (req, res, next, id) {
 	datafile = req.params.datafile;
 	datafilename = datafile+'.json';
 	// Load Data
-	datafilepath = './Datas/'+datafilename;
+	datafilepath = './datas/'+datafilename;
 	var data = null;
 	try {
 		delete require.cache[require.resolve(datafilepath)];
