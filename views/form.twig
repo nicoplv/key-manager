@@ -1,0 +1,45 @@
+{% extends "templates/main.twig" %}
+
+{% block body %}
+<div class="large-12 columns">
+	<div class="callout panel text-center">
+		<h1>Get Keys in "{{ datafilename }}"</h1>
+	</div>
+</div>
+<div class="large-6 medium-12 columns">
+	<form action="" method="post" data-abide>
+		<div class="row">
+			<div class="large-12 columns">
+				<label for="email">
+					Email address <small>required</small>
+					<input type="email" id="email" name="email" placeholder="john.doe@email.com" required>
+				</label>
+				<small class="error">An email address is required.</small>
+			</div>
+			<div class="large-12 columns">
+				<label for="type">
+					Type of key <small>required</small>
+					<select name="type" id="type" name="type" required>
+						{% for type in types %}
+							<option value="{{ type }}">{{ type }}</option>
+						{% endfor %}
+					</select>
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<label for="number">
+					Number <small>required</small>
+					<input type="number" id="number" name="number" placeholder="1" required>
+				</label>
+			</div>
+			<div class="large-12 columns">
+				<button type="submit" class="left">Get keys</button>
+				<a href="/list/{{ datafile }}" class="button right">List all keys</a>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="large-6 medium-12 columns">
+	{% include 'templates/keys_only_table.twig' %}
+</div>
+{% endblock %}

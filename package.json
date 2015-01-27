@@ -1,0 +1,32 @@
+{
+  "name": "key-manager",
+  "version": "0.0.0",
+  "description": "Key manager for game developper",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicoplv/key-manager.git"
+  },
+  "keywords": [
+    "key",
+    "manager",
+    "game",
+    "key",
+    "indie",
+    "game"
+  ],
+  "author": "Nicolas Pierre-Loti-Viaud",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/nicoplv/key-manager/issues"
+  },
+  "dependencies": {
+    "express": "~4.10.7",
+    "twig": "~0.7.2",
+    "underscore": "~1.7.0",
+    "body-parser": "~1.10.1"
+  }
+}

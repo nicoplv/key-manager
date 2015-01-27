@@ -1,0 +1,22 @@
+{% if keys is defined and keys %}
+<table width="100%">
+	<thead>
+		<tr>
+			<th>Key</th>
+			<th>Type</th>
+			<th>Sended</th>
+			<th>To</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for key in keys %}
+		<tr>
+			<td>{{ key.key }}</td>
+			<td>{{ key.type }}</td>
+			<td>{{ key.sended }}</td>
+			<td>{{ key.to }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}

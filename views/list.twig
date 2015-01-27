@@ -1,0 +1,15 @@
+{% extends "templates/main.twig" %}
+
+{% block body %}
+<div class="large-12 columns">
+	<div class="callout panel text-center">
+		<h1>All Keys in "{{ datafilename }}"</h1>
+	</div>
+</div>
+<div class="large-12 columns">
+	<a href="/get-keys/{{ datafile }}" class="button">Get key</a>
+</div>
+<div class="large-12 columns">
+	{% include 'templates/keys_table.twig' %}
+</div>
+{% endblock %}
