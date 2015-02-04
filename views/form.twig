@@ -11,17 +11,17 @@
 		<div class="row">
 			<div class="large-12 columns">
 				<label for="email">
-					Email address <small>required</small>
+					Email <small>required</small>
 					<input type="email" id="email" name="email" placeholder="john.doe@email.com" required>
 				</label>
 				<small class="error">An email address is required.</small>
 			</div>
 			<div class="large-12 columns">
-				<label for="type">
-					Type of key <small>required</small>
-					<select name="type" id="type" name="type" required>
-						{% for type in types %}
-							<option value="{{ type }}">{{ type }}</option>
+				<label for="tag">
+					Tag <small>required</small>
+					<select name="tag" id="tag" name="tag" required>
+						{% for tag in tags %}
+							<option value="{{ tag }}">{{ tag }}</option>
 						{% endfor %}
 					</select>
 				</label>
@@ -34,7 +34,7 @@
 			</div>
 			<div class="large-12 columns">
 				<button type="submit" class="left">Get keys</button>
-				<a href="/list/{{ datafile }}" class="button right">List all keys</a>
+				<a href="/listkeys/{{ datafile }}" class="button right">List all keys</a>
 			</div>
 		</div>
 	</form>

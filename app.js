@@ -5,12 +5,8 @@ var port = process.env.PORT || 3000;
 
 var express = require('express');
 var app = express();
-var fs = require('fs');
 var bodyparser = require('body-parser');
 var _ = require('underscore');
-
-var datafile, datafilename, datafilepath, types, keys;
-var keyTypeSended = 'promo';
 
 app.use(bodyparser.urlencoded({
   extended: true
@@ -22,98 +18,37 @@ app.use(express.static(__dirname, 'public'));
 // ==============================================
 
 app.param('datafile', function (req, res, next, id) {
-	datafile = req.params.datafile;
-	datafilename = datafile+'.json';
+	global.datafile = req.params.datafile;
+	global.datafilename = global.datafile+'.json';
 	// Load Data
-	datafilepath = './datas/'+datafilename;
+	global.datafilepath = './datas/'+global.datafilename;
 	var data = null;
 	try {
-		delete require.cache[require.resolve(datafilepath)];
-		data = require(datafilepath);
+		delete require.cache[require.resolve(global.datafilepath)];
+		data = require(global.datafilepath);
 	}
 	catch (e) {
 		res.render('error.twig', {
-			message : '"'+datafilename+'" not found'
+			message : '"'+global.datafilename+'" not found'
 		});
 		return;
 	}
-	types = data.types;
-	keys = data.keys;
+	global.tags = data.tags;
+	global.keys = data.keys;
 	// If no Types, create them
-	if(types===undefined || types.length===0){
-		types = [];
+	if(global.tags===undefined || global.tags.length===0){
+		global.tags = [];
 		_.each(keys, function(key){
-			if(!_.contains(types, key.type)){
-				types.push(key.type);
+			if(!_.contains(global.tags, key.tag)){
+				global.tags.push(key.tag);
 			}
 		});
 	}
 	next();
 });
 
-app.get('/get-keys/:datafile', function (req, res) {
-	res.render('form.twig', {
-		datafile : datafile,
-		datafilename : datafilename,
-		types : types
-	});
-});
-
-app.post('/get-keys/:datafile', function (req, res) {
-	if(!(req.body.email&&req.body.type&&req.body.number)){
-		res.render('error.twig', {
-			message : 'Error with form',
-			goback : '/get-keys/'+datafile
-		});
-		return;
-	}
-	// Init var
-	var email = req.body.email;
-	var type = req.body.type;
-	var number = req.body.number;
-	// Get keys
-	var returnkeys = [];
-	for(var keynumber in keys){
-		var key = keys[keynumber];
-		if(key.sended === 'false' && key.type === type){
-			key.sended = 'true';
-			key.to = email;
-			returnkeys.push(key);
-		}
-		if(returnkeys.length>=number)
-			break;
-	}
-	// No more keys available
-	if(returnkeys.length<number){
-		res.render('error.twig', {
-			message : 'No more keys available',
-			goback : '/get-keys/'+datafile
-		});
-		return;
-	}
-	// Show list
-	res.render('form.twig', {
-		datafile : datafile,
-		datafilename : datafilename,
-		types : types,
-		keys : returnkeys
-	});
-	// Save data
-	var data = {'types':types, 'keys':keys};
-	fs.writeFile(datafilepath, JSON.stringify(data, null, 4), function(err) {
-		if(err)
-			console.log('Error at save: ' + error);
-	});
-});
-
-app.get('/list/:datafile', function (req, res) {
-	res.render('list.twig', {
-		datafile : datafile,
-		datafilename : datafilename,
-		types : types,
-		keys : keys
-	});
-});
+app.use('/getkeys/:datafile', require('./routes/getkeys'));
+app.use('/listkeys/:datafile', require('./routes/listkeys'));
 
 // START THE SERVER
 // ==============================================
@@ -123,4 +58,5 @@ if (module.parent === null) {
 	console.log('run port ' + port);
 }
 
-module.exports = app;
+// Expose app
+exports = module.exports = app;

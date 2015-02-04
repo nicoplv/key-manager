@@ -1,26 +1,26 @@
 {
-    "types": [
+    "tags": [
         "press",
         "promo"
     ],
     "keys": [
         {
-            "key": "DT5VJ",
-            "type": "press",
+            "key": "AAAAA-AAAAA-AAAAA",
+            "tag": "press",
             "sended": "true",
             "to": "mail@mail.com"
         },
         {
-            "key": "NXPVA",
-            "type": "promo",
+            "key": "BBBBB-BBBBB-BBBBB",
+            "tag": "promo",
             "sended": "true",
             "to": "mail@mail.fr"
         },
         {
-            "key": "RDHYW",
-            "type": "promo",
-            "sended": "false",
-            "to": ""
+            "key": "CCCCC-CCCCC-CCCCC",
+            "tag": "promo",
+            "sended": "true",
+            "to": "nicoplv@hotmail.fr"
         }
     ]
 }
