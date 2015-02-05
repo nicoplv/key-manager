@@ -1,29 +1,35 @@
 module.exports = (function (req, res, next, id) {
-	__datafile = req.params.datafile;
-	__datafilename = __datafile+'.json';
+	var datafile = req.params.datafile;
+	var datafilename = datafile+'.json';
 	// Load Data
-	__datafilepath = __maindirname + '/datas/'+__datafilename;
+	var datafilepath = __maindirname + '/datas/'+datafilename;
 	var data = null;
 	try {
-		delete require.cache[require.resolve(__datafilepath)];
-		data = require(__datafilepath);
+		delete require.cache[require.resolve(datafilepath)];
+		data = require(datafilepath);
 	}
 	catch (e) {
 		res.render('error.twig', {
-			message : '"'+__datafilename+'" not found'
+			message : '"'+datafilename+'" not found'
 		});
 		return;
 	}
-	__tags = data.tags;
-	__keys = data.keys;
+	var tags = data.tags;
+	var keys = data.keys;
 	// If no Types, create them
-	if(__tags===undefined || __tags.length===0){
-		__tags = [];
+	if(tags===undefined || tags.length===0){
+		tags = [];
 		_.each(keys, function(key){
-			if(!_.contains(__tags, key.tag)){
-				__tags.push(key.tag);
+			if(!_.contains(tags, key.tag)){
+				tags.push(key.tag);
 			}
 		});
 	}
+	// send to next middleware
+	req.datafile = datafile;
+	req.datafilename = datafilename;
+	req.datafilepath = datafilepath;
+	req.tags = tags;
+	req.keys = keys;
 	next();
 });

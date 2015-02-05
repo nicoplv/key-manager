@@ -2,11 +2,6 @@
 // ==============================================
 
 global.__maindirname = __dirname;
-global.__datafile = null;
-global.__datafilename = null;
-global.__datafilepath = null;
-global.__tags = null;
-global.__keys = null;
 
 // BASE SETUP
 // ==============================================

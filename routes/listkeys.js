@@ -5,10 +5,10 @@ module.exports = (function() {
 
     router.get('/', function (req, res) {
 		res.render('listkeys.twig', {
-			datafile : __datafile,
-			datafilename : __datafilename,
-			tags : __tags,
-			keys : __keys
+			datafile : req.datafile,
+			datafilename : req.datafilename,
+			tags : req.tags,
+			keys : req.keys
 		});
 	});
 
