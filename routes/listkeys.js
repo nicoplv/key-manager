@@ -4,11 +4,11 @@ module.exports = (function() {
 	var router = express.Router();
 
     router.get('/', function (req, res) {
-		res.render('list.twig', {
-			datafile : global.datafile,
-			datafilename : global.datafilename,
-			tags : global.tags,
-			keys : global.keys
+		res.render('listkeys.twig', {
+			datafile : __datafile,
+			datafilename : __datafilename,
+			tags : __tags,
+			keys : __keys
 		});
 	});
 

@@ -5,10 +5,10 @@ module.exports = (function() {
 	var router = express.Router();
 
     router.get('/', function(req, res) {
-		res.render('form.twig', {
-			datafile : global.datafile,
-			datafilename : global.datafilename,
-			tags : global.tags
+		res.render('getkeys.twig', {
+			datafile : __datafile,
+			datafilename : __datafilename,
+			tags : __tags
 		});
     });
 	
@@ -16,7 +16,7 @@ module.exports = (function() {
 		if(!(req.body.email&&req.body.tag&&req.body.number)){
 			res.render('error.twig', {
 				message : 'Error with form',
-				goback : '/getkeys/'+global.datafile
+				goback : '/getkeys/'+__datafile
 			});
 			return;
 		}
@@ -26,8 +26,8 @@ module.exports = (function() {
 		var number = req.body.number;
 		// Get keys
 		var returnkeys = [];
-		for(var keynumber in global.keys){
-			var key = global.keys[keynumber];
+		for(var keynumber in __keys){
+			var key = __keys[keynumber];
 			if(key.sended === 'false' && key.tag === tag){
 				key.sended = 'true';
 				key.to = email;
@@ -40,21 +40,21 @@ module.exports = (function() {
 		if(returnkeys.length<number){
 			res.render('error.twig', {
 				message : 'No more keys available',
-				goback : '/getkeys/'+global.datafile
+				goback : '/getkeys/'+__datafile
 			});
 			return;
 		}
 		// Show list
-		res.render('form.twig', {
-			datafile : global.datafile,
-			datafilename : global.datafilename,
-			tags : global.tags,
+		res.render('getkeys.twig', {
+			datafile : __datafile,
+			datafilename : __datafilename,
+			tags : __tags,
 			keys : returnkeys
 		});
 		// Save data
-		var data = {'tags':global.tags, 'keys':global.keys};
-		fs.writeFile(global.datafilepath, JSON.stringify(data, null, 4), function(err) {
-			if(err)
+		var data = {'tags':__tags, 'keys':__keys};
+		fs.writeFile(__datafilepath, JSON.stringify(data, null, 4), function(error) {
+			if(error)
 				console.log('Error at save: ' + error);
 		});
 	});

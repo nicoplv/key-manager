@@ -40,6 +40,9 @@
 	</form>
 </div>
 <div class="large-6 medium-12 columns">
-	{% include 'templates/keys_only_table.twig' %}
+	{% set noTag = true %}
+	{% set noSended = true %}
+	{% set noTo = true %}
+	{% include 'templates/keystable.twig' %}
 </div>
 {% endblock %}

@@ -1,0 +1,22 @@
+{% if keys is defined and keys %}
+<table width="100%">
+	<thead>
+		<tr>
+			{% if not noKey is defined %}<th>Key</th>{% endif %}
+			{% if not noTag is defined %}<th>Tag</th>{% endif %}
+			{% if not noSended is defined %}<th>Sended</th>{% endif %}
+			{% if not noTo is defined %}<th>To</th>{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for key in keys %}
+		<tr>
+			{% if not noKey is defined %}<td>{{ key.key }}</td>{% endif %}
+			{% if not noTag is defined %}<td>{{ key.tag }}</td>{% endif %}
+			{% if not noSended is defined %}<td>{{ key.sended }}</td>{% endif %}
+			{% if not noTo is defined %}<td>{{ key.to }}</td>{% endif %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endif %}
