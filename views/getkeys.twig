@@ -1,11 +1,7 @@
-{% extends "templates/main.twig" %}
+{% set getkeys = true %}
+{% extends 'globals/main.twig' %}
 
 {% block body %}
-<div class="large-12 columns">
-	<div class="callout panel text-center">
-		<h1>Get Keys in "{{ datafilename }}"</h1>
-	</div>
-</div>
 <div class="large-6 medium-12 columns">
 	<form action="" method="post" data-abide>
 		<div class="row">
@@ -32,9 +28,8 @@
 					<input type="number" id="number" name="number" placeholder="1" required>
 				</label>
 			</div>
-			<div class="large-12 columns">
-				<button type="submit" class="left">Get keys</button>
-				<a href="/listkeys/{{ datafile }}" class="button right">List all keys</a>
+			<div class="large-12 columns margin-top">
+				<button type="submit" class="large-12">Get keys</button>
 			</div>
 		</div>
 	</form>

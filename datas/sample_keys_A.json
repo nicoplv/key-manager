@@ -19,8 +19,8 @@
         {
             "key": "CCCCC-CCCCC-CCCCC",
             "tag": "promo",
-            "sended": "true",
-            "to": "nicoplv@hotmail.fr"
+            "sended": "false",
+            "to": ""
         }
     ]
 }

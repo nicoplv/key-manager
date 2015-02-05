@@ -1,0 +1,59 @@
+<nav class="top-bar" data-topbar role="navigation">
+	
+	<ul class="title-area">
+		<li class="name">
+			<h1><a href="/">Key Manager</a></h1>
+		</li>
+	</ul>
+
+	<section class="top-bar-section">
+		<!-- Right Nav Section -->
+		<ul class="right">
+		
+			{% if datafile is defined %}
+			{% if getkeys is defined %}
+			<li class="active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="/getkeys/{{ datafile }}">Get Keys</a>
+			</li>
+			{% if listkeys is defined %}
+			<li class="active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="/listkeys/{{ datafile }}">List Keys</a>
+			</li>
+			{% endif %}
+
+		</ul>
+		
+		<!-- Left Nav Section -->
+		<ul class="left">
+			
+			{% if lists is defined and lists %}
+			<li class="has-dropdown not-click">
+				{% if datafilename is defined %}
+				<a href="/" data-dropdown="drop-lists">{{ datafilename }}</a>
+				{% else %}
+				<a href="/" data-dropdown="drop-lists">Choose a Key Lists</a>
+				{% endif %}
+				<ul id="drop-lists" class="dropdown" data-dropdown-content>
+					{% for list in lists %}
+					{% if datafile is defined and datafile == list.name %}
+					<li class="active">
+					{% else %}
+					<li>
+					{% endif %}
+						<a href="{{ list.link }}">{{ list.filename }}</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</li>
+			{% endif %}
+			
+		</ul>
+	</section>
+	
+</nav>

@@ -2,6 +2,7 @@
 // ==============================================
 
 global.__maindirname = __dirname;
+global.__lists = [];
 
 // BASE SETUP
 // ==============================================
@@ -21,7 +22,11 @@ app.use(express.static(__maindirname, 'public'));
 // ROUTES
 // ==============================================
 
-app.param('datafile', require('./params/datafile'));
+app.param('datafile', require('./middlewares/datafile'));
+
+app.use(require('./middlewares/getlists'));
+
+app.use('/', require('./routes/home'));
 
 app.use('/getkeys/:datafile', require('./routes/getkeys'));
 app.use('/listkeys/:datafile', require('./routes/listkeys'));

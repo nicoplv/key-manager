@@ -10,14 +10,20 @@
 		<script src="/public/js/vendor/modernizr.js"></script>
 	</head>
 	<body>
+		
+		{% include 'globals/nav.twig' %}
+		
 		<div class="row margin-top">
+			
 			{% block body %}
 				<p>[...]</p>
 			{% endblock %}
+			
 		</div>
 		<script src="/public/js/vendor/jquery.js"></script>
 		<script src="/public/js/foundation/foundation.js"></script>
 		<script src="/public/js/foundation/foundation.abide.js"></script>
+		<script src="/public/js/foundation/foundation.dropdown.js"></script>
 		<script>
 			$(document).foundation();
 		</script>

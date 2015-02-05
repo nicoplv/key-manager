@@ -8,7 +8,8 @@ module.exports = (function() {
 		res.render('getkeys.twig', {
 			datafile : req.datafile,
 			datafilename : req.datafilename,
-			tags : req.tags
+			tags : req.tags,
+			lists : __lists
 		});
     });
 	
@@ -16,7 +17,8 @@ module.exports = (function() {
 		if(!(req.body.email&&req.body.tag&&req.body.number)){
 			res.render('error.twig', {
 				message : 'Error with form',
-				goback : '/getkeys/'+req.datafile
+				goback : '/getkeys/'+req.datafile,
+				lists : __lists
 			});
 			return;
 		}
@@ -40,7 +42,8 @@ module.exports = (function() {
 		if(returnkeys.length<number){
 			res.render('error.twig', {
 				message : 'No more keys available',
-				goback : '/getkeys/'+req.datafile
+				goback : '/getkeys/'+req.datafile,
+				lists : __lists
 			});
 			return;
 		}
@@ -49,7 +52,8 @@ module.exports = (function() {
 			datafile : req.datafile,
 			datafilename : req.datafilename,
 			tags : req.tags,
-			keys : returnkeys
+			keys : returnkeys,
+			lists : __lists
 		});
 		// Save data
 		var data = {'tags':req.tags, 'keys':req.keys};
