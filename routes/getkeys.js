@@ -15,9 +15,11 @@ module.exports = (function() {
 	
 	router.post('/', function (req, res) {
 		if(!(req.body.email&&req.body.tag&&req.body.number)){
-			res.render('error.twig', {
-				message : 'Error with form',
-				goback : '/getkeys/'+req.datafile,
+			res.render('getkeys.twig', {
+				datafile : req.datafile,
+				datafilename : req.datafilename,
+				tags : req.tags,
+				errormessage : 'Error with form',
 				lists : __lists
 			});
 			return;
@@ -40,9 +42,11 @@ module.exports = (function() {
 		}
 		// No more keys available
 		if(returnkeys.length<number){
-			res.render('error.twig', {
-				message : 'No more keys available',
-				goback : '/getkeys/'+req.datafile,
+			res.render('getkeys.twig', {
+				datafile : req.datafile,
+				datafilename : req.datafilename,
+				tags : req.tags,
+				errormessage : 'No more keys available',
 				lists : __lists
 			});
 			return;

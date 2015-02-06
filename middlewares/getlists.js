@@ -4,10 +4,14 @@ module.exports = (function (req, res, next) {
 	
 	if(__lists.length === 0){
 		fs.readdir(__maindirname+'/datas/', function (error, files) {
-			if(error)
-				console.log('Error at read directory: ' + error);
-
+			
 			__lists = [];
+			
+			if(error) {
+				console.log('Error at read directory: ' + error);
+				next();
+				return;
+			}
 
 			files.forEach( function (file) {
 				__lists.push({

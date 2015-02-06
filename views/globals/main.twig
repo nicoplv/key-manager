@@ -13,6 +13,13 @@
 		
 		{% include 'globals/nav.twig' %}
 		
+		{% if errormessage is defined %}
+			<div data-alert class="alert-box alert">
+				{{ errormessage }}
+				<a href="#" class="close">&times;</a>
+			</div>
+		{% endif %}
+		
 		<div class="row margin-top">
 			
 			{% block body %}
@@ -21,9 +28,7 @@
 			
 		</div>
 		<script src="/public/js/vendor/jquery.js"></script>
-		<script src="/public/js/foundation/foundation.js"></script>
-		<script src="/public/js/foundation/foundation.abide.js"></script>
-		<script src="/public/js/foundation/foundation.dropdown.js"></script>
+		<script src="/public/js/foundation.min.js"></script>
 		<script>
 			$(document).foundation();
 		</script>
