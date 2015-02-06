@@ -55,6 +55,14 @@
 			{% endif %}
 				<a href="/listkeys/{{ datafile }}">List Keys</a>
 			</li>
+			{% else %}
+			{% if addlist is defined %}
+			<li class="active">
+			{% else %}
+			<li>
+			{% endif %}
+				<a href="/addlist">Add List</a>
+			</li>
 			{% endif %}
 
 		</ul>

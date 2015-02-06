@@ -28,6 +28,8 @@ app.use(require('./middlewares/getlists'));
 
 app.use('/', require('./routes/home'));
 
+app.use('/addlist', require('./routes/addlist'));
+
 app.use('/getkeys/:datafile', require('./routes/getkeys'));
 app.use('/listkeys/:datafile', require('./routes/listkeys'));
 
