@@ -14,21 +14,21 @@
 		<!-- Left Nav Section -->
 		<ul class="left">
 
-			{% if lists is defined and lists|length > 0 %}
+			{% if key_lists is defined and key_lists|length > 0 %}
 			<li class="has-dropdown">
-				{% if datafilename is defined %}
-				<a href="#">{{ datafilename }}</a>
+				{% if list is defined %}
+				<a href="#">{{ list }}</a>
 				{% else %}
 				<a href="#">Choose Key Lists</a>
 				{% endif %}
 				<ul class="dropdown">
-					{% for list in lists %}
-					{% if datafile is defined and datafile == list.name %}
+					{% for key_list in key_lists %}
+					{% if list is defined and list == key_list.name %}
 					<li class="active">
 					{% else %}
 					<li>
 					{% endif %}
-						<a href="{{ list.link }}">{{ list.filename }}</a>
+						<a href="/listkeys/{{ key_list.name }}">{{ key_list.name }}</a>
 					</li>
 					{% endfor %}
 				</ul>
@@ -40,20 +40,20 @@
 		<!-- Right Nav Section -->
 		<ul class="right">
 
-			{% if datafile is defined %}
+			{% if list is defined %}
 			{% if getkeys is defined %}
 			<li class="active">
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="/getkeys/{{ datafile }}">Get Keys</a>
+				<a href="/getkeys/{{ list }}">Get Keys</a>
 			</li>
 			{% if listkeys is defined %}
 			<li class="active">
 			{% else %}
 			<li>
 			{% endif %}
-				<a href="/listkeys/{{ datafile }}">List Keys</a>
+				<a href="/listkeys/{{ list }}">List Keys</a>
 			</li>
 			{% else %}
 			{% if addlist is defined %}
