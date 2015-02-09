@@ -32,7 +32,7 @@ app.use(require('./middlewares/getlists'));
 
 app.use('/', require('./routes/home'));
 
-app.use('/addlist', require('./routes/addlist'));
+app.use('/addkeys', require('./routes/addkeys'));
 
 app.use('/getkeys/:list', require('./routes/getkeys'));
 app.use('/listkeys/:list', require('./routes/listkeys'));

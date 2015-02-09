@@ -1,0 +1,43 @@
+{% set getkeys = true %}
+{% extends 'globals/main.twig' %}
+
+{% block body %}
+<form action="" method="post" data-abide>
+	<div class="large-6 medium-12 columns">
+		<div class="row">
+			<div class="large-12 columns">
+				<label for="list">
+					List <small>required</small>
+					<select name="list" id="list" required>
+						{% for key_list in key_lists %}
+							<option value="{{ key_list.name }}">{{ key_list.name }}</option>
+						{% endfor %}
+					</select>
+				</label>
+				<small class="error">A list name is required.</small>
+			</div>
+			<div class="large-12 columns">
+				<label for="tag">
+					Tag <small>required</small>
+					<input type="text" id="tag" name="tag" placeholder="press" required>
+				</label>
+				<small class="error">A tag is required.</small>
+			</div>
+			<div class="large-12 columns margin-top">
+				<button type="submit" class="large-12">Add List</button>
+			</div>
+		</div>
+	</div>
+	<div class="large-6 medium-12 columns">
+		<div class="row">
+			<div class="large-12 columns">
+				<label for="keys">
+					Keys <small>required</small>
+					<textarea id="keys" name="keys" placeholder="Paste one by line" required></textarea>
+				</label>
+				<small class="error">A key list is required.</small>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}

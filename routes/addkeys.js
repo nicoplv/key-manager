@@ -5,8 +5,8 @@ module.exports = (function() {
 	var router = express.Router();
 
     router.get('/', function(req, res) {
-		res.render('addlist.twig', {
-			lists : __lists
+		res.render('addkeys.twig', {
+			key_lists : __key_lists
 		});
     });
 	
