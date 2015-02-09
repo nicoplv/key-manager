@@ -6,7 +6,7 @@ module.exports = (function() {
 
     router.get('/', function (req, res) {
 		res.render('home.twig', {
-			lists : __lists
+			key_lists : __key_lists
 		});
 	});
 

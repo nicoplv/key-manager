@@ -2,10 +2,13 @@
 // ==============================================
 
 global.__maindirname = __dirname;
-global.__lists = [];
+global.__key_lists = [];
+
 
 // BASE SETUP
 // ==============================================
+
+require( './database' );
 
 var port = process.env.PORT || 3000;
 
@@ -19,17 +22,19 @@ app.use(bodyparser.urlencoded({
 
 app.use(express.static(__maindirname, 'public'));
 
+
 // ROUTES
 // ==============================================
 
-app.param('datafile', require('./middlewares/datafile'));
+app.param('list', require('./middlewares/getkeys'));
 
 app.use(require('./middlewares/getlists'));
 
 app.use('/', require('./routes/home'));
 
-app.use('/getkeys/:datafile', require('./routes/getkeys'));
-app.use('/listkeys/:datafile', require('./routes/listkeys'));
+app.use('/getkeys/:list', require('./routes/getkeys'));
+app.use('/listkeys/:list', require('./routes/listkeys'));
+
 
 // START THE SERVER
 // ==============================================
@@ -38,6 +43,7 @@ if (module.parent === null) {
 	app.listen(port);
 	console.log('run port ' + port);
 }
+
 
 // Expose app
 exports = module.exports = app;
